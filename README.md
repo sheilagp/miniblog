@@ -75,3 +75,15 @@ revisión; después entra como `docente.demo` (o como administrador), revísala 
 
 > **Importante:** borra estos usuarios (en `/admin/users/`, como administrador) o cambia su contraseña
 > antes de publicar el blog en internet. Contraseñas conocidas en un servidor público son un riesgo.
+
+## Cómo he desplegado el proyecto
+
+### Comandos utilizados
+- `composer install`
+- `php bin/console create-schema`
+- `php bin/console app:create-user admin "Administrador"`
+- `php -S 0.0.0.0:8000 -t public`
+
+### Problemas surgidos y soluciones
+- **Conexión SSH:** La IP `10.0.2.15` es interna de la VM en modo NAT, por lo que hubo que configurar el reenvío del puerto `22` al `2222` en VirtualBox para conectar desde Windows con `ssh -p 2222 sheila-galvez@localhost`.
+- **Acceso al servidor web:** Al arrancar PHP con `localhost:8000`, no respondía al navegador de Windows. Se resolvió haciendo que PHP escuche en todas las interfaces mediante `0.0.0.0:8000`.
